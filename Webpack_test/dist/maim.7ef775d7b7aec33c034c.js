@@ -1,0 +1,1 @@
+(()=>{"use strict";const t=new class{constructor(t){this.title=t,this.date=new Date}toSring(){return JSON.stringify({title:this.title,date:this.date.toJSON()})}get uppercaseTitle(){return this.title.toUpperCase()}}("Webpack post title");console.log("Post to  String",t.toSring())})();
