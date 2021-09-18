@@ -10,55 +10,49 @@ class App extends Component {
             {name :'Audi', year: "2016"},
             {name :'Mazda', year: "2010"}
         ],
-        pageTitle: 'React components'
+        pageTitle: 'React components',
+        showCars: false
     }
 
-    changeTitleHandler = (newTitle) => {
-
-        // const oldTitle = this.state.pageTitle
-        //
-        // const newTitle = oldTitle + '(changed)'
+    ToggleCarsHandler = () => {
 
         this.setState({
-            pageTitle: newTitle
+            showCars: !this.state.showCars
         })
 
     }
-    HandlerInput = (event) => {
-        // console.log('changed', event.target.value)
-        this.setState({
-            pageTitle:  event.target.value
-        })
+    changeTitleHandler = pageTitle => {
+        this.setState({pageTitle})
     }
     render() {
         console.log('render')
         const divStyle = {
-                textAlign: 'center'
-            }
+            textAlign: 'center'
+        }
+        let cars = null
+        if (this.state.showCars) {
+            cars = this.state.cars.map((car,index) => {
+                return (
+                    <Car
+                        key={index}
+                        name={car.name}
+                        year={car.year}
+                        onChangeTitle={() => this.changeTitleHandler(car.name)}
+                    />
+                )
+            })
+        }
 
         return (
             <div style={divStyle}>
                 <h1>{this.state.pageTitle}</h1>
-                <input type='text' onChange={this.HandlerInput}/>
-                <button onClick={this.changeTitleHandler.bind(this, 'Changed')}
-                >Change title</button>
+                <button onClick={this.ToggleCarsHandler}
+                >Toggle cars</button>
 
-
-                { this.state.cars.map((car,index) => {
-                  return (
-                      <Car
-                      key={index}
-                      name={car.name}
-                      year={car.year}
-                      onChangeTitle={() => this.changeTitleHandler(car.name)}
-                      />
-                  )
-                }) }
+                { cars }
             </div>
         );
     }
 }
 
-
-// 3  Теория   работа с списком 
 export default App;
