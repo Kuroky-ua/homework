@@ -43,6 +43,7 @@ class App extends Component {
             textAlign: 'center'
         }
         let cars = null
+
         if (this.state.showCars) {
             cars = this.state.cars.map((car,index) => {
                 return (
@@ -62,8 +63,13 @@ class App extends Component {
                 <h1>{this.state.pageTitle}</h1>
                 <button onClick={this.ToggleCarsHandler}
                 >Toggle cars</button>
-
+                <div style={{
+                    width:400,
+                    margin:"auto",
+                    paddingTop:'20',
+                }}>
                 { cars }
+                </div>
             </div>
         );
     }
