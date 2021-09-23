@@ -5,18 +5,20 @@ import  Car from './Car/Car'
 class App extends Component {
 
     constructor(props) {
-        super(props);
-        this.state= {
-            cars : [
-                {name :'Ford', year: "2018"},
-                {name :'Audi', year: "2016"},
-                {name :'Mazda', year: "2010"}
+        console.log("app constructor")
+        super(props)
+
+        this.state = {
+            cars: [
+                {name: 'Ford', year: "2018"},
+                {name: 'Audi', year: "2016"},
+                {name: 'Mazda', year: "2010"}
             ],
             pageTitle: 'React components',
             showCars: false
         }
     }
-    
+
     ToggleCarsHandler = () => {
 
         this.setState({
@@ -41,6 +43,14 @@ class App extends Component {
         this.setState({
             cars
         })
+    }
+
+    componentWillMount() {
+        console.log("App componentWillMount-one")
+    }
+
+    componentDidMount() {
+        console.log("App  componentDidMount-end")
     }
 
     render() {
