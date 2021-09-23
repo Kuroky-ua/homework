@@ -4,16 +4,19 @@ import  Car from './Car/Car'
 
 class App extends Component {
 
-    state = {
-        cars : [
-            {name :'Ford', year: "2018"},
-            {name :'Audi', year: "2016"},
-            {name :'Mazda', year: "2010"}
-        ],
-        pageTitle: 'React components',
-        showCars: false
+    constructor(props) {
+        super(props);
+        this.state= {
+            cars : [
+                {name :'Ford', year: "2018"},
+                {name :'Audi', year: "2016"},
+                {name :'Mazda', year: "2010"}
+            ],
+            pageTitle: 'React components',
+            showCars: false
+        }
     }
-
+    
     ToggleCarsHandler = () => {
 
         this.setState({
@@ -21,6 +24,7 @@ class App extends Component {
         })
 
     }
+
     onChangeName (name ,index) {
       const car= this.state.cars[index]
         car.name = name
@@ -30,6 +34,7 @@ class App extends Component {
             cars
         })
     }
+
     deleteHandler= (index) => {
         const cars = this.state.cars.concat()
         cars.splice(index, 1)
@@ -37,6 +42,7 @@ class App extends Component {
             cars
         })
     }
+
     render() {
         console.log('render')
         const divStyle = {
@@ -60,7 +66,8 @@ class App extends Component {
 
         return (
             <div style={divStyle}>
-                <h1>{this.state.pageTitle}</h1>
+                {/*<h1>{this.state.pageTitle}</h1>*/}
+                <h1>{this.props.title}</h1>
                 <button onClick={this.ToggleCarsHandler}
                 >Toggle cars</button>
                 <div style={{
