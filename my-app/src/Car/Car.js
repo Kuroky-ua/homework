@@ -4,8 +4,26 @@ import './Car.css'
 
 
 class Car extends React.Component {
-    
+
+    componentWillReceiveProps(nextProps) {
+        console.log( "componentWillReceiveProps", nextProps)
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log( "shouldComponentUpdate", nextProps, nextState)
+        return nextProps.name.trim() !== this.props.name.trim()
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log( "componentWillUpdate", nextProps, nextState)
+    }
+
+    componentDidUpdate() {
+        console.log( "componentDidUpdate")
+    }
+
     render() {
+        console.log('Car render')
         const inputClasses = ['input'
 
         ]
@@ -41,4 +59,4 @@ class Car extends React.Component {
     }
 }
 
-export default Radium (Car)
+export default Car
