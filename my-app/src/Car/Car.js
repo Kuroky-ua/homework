@@ -18,11 +18,26 @@ class Car extends React.Component {
         console.log( "componentWillUpdate", nextProps, nextState)
     }
 
+    // static getDirivedeStateFromProps( nextProps, prevState) {
+    // console.log('Car getDirivedeStateFromProps', nextProps,prevState)
+    //     return prevState
+    // }
+
+    // getSnapshotBeforeUpdate() {
+    //     console.log( "getSnapshotBeforeUpdate")
+    // }
+
     componentDidUpdate() {
         console.log( "componentDidUpdate")
     }
+   componentWillUnmount() {
+       console.log( "componentWillUnmoun ")
+   }
 
     render() {
+        if (Math.random() > 0.7 ) {
+            throw new Error('Car random Faill')
+        }
         console.log('Car render')
         const inputClasses = ['input'
 
