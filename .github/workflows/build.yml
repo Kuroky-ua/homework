@@ -1,25 +1,22 @@
-name: Build & Deploy
-on: [push, workflow_dispatch]
+name: Minify Workflow
+on:
+  push:
+    branches: [ foo ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Get code
-        uses: actions/checkout@v3
-      - name: Install deps
-        run: npm ci
-      - name: Build project
-        run: npm run build
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+      # Checks-out your repository
+      - uses: actions/checkout@v2
         with:
-          path: build
-          name: build-files
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get build project
-        uses: actions/download-artifact@v3
+          ref: ${{ github.ref }}
+
+      - name: Minify Action
+        uses: anthonyftwang/minify-action@v1.0.1
+
+      # Auto-commit to repository
+      - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          name: build-files
+          commit_message: Minify source code
+          branch: ${{ github.ref }}
